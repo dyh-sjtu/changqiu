@@ -1,0 +1,142 @@
+<% include ../includes/backend-head.ejs %>
+<body style="overflow-x: hidden;background-color: #eee;">
+<% include ../includes/backend-header.ejs %>
+<div class="main">
+    <% include ../includes/backend-sidebar.ejs %>
+    <div class="backend-container">
+        <div class="row pb-10" style="margin-right: 0;margin-left: 0">
+            <h2 class="w100 tc"><%= product && product._id ? "产品更新" : "产品添加" %></h2>
+        </div>
+        <hr class="layui-bg-blue pt-5">
+        <div class="backend-content" style="background-color: #fff">
+            <div class="layui-form" style="padding: 0 15px">
+                <div class="layui-form-item">
+                    <div class="layui-input-block">
+                        <input type="hidden" value="<%= product && product._id %>" class="layui-input"
+                               id="product_id">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label" for="product_name">产品名称</label>
+                    <div class="layui-input-block">
+                        <input type="text" value="<%= product && product.name %>"
+                               placeholder="请输入产品名称"
+                               autocomplete="on" class="layui-input" id="product_name">
+                    </div>
+                </div>
+
+                <div class="layui-form-item">
+                    <label class="layui-form-label">产品类型</label>
+                    <div class="layui-input-block">
+                        <% productCategorys.forEach(function (productCategory, index) { %>
+                        <% if (product && (productCategory._id.toString() === product.category.toString())) { %>
+                        <input type="radio" name="product_category" value="<%= productCategory._id %>"
+                               title="<%= productCategory.name %>" checked>
+                        <% } else { %>
+                        <input type="radio" name="product_category" value="<%= productCategory._id %>"
+                               title="<%= productCategory.name %>">
+                        <% } %>
+                        <% }) %>
+                    </div>
+                </div>
+
+                <div class="layui-form-item">
+                    <label class="layui-form-label" for="product_smallCategory">产品属类</label>
+                    <div class="layui-input-block">
+                        <input type="text" value="<%= product && product.smallCategory %>"
+                               placeholder="请输入产品属类"
+                               autocomplete="on" class="layui-input" id="product_smallCategory">
+                    </div>
+                </div>
+
+                <div class="layui-form-item">
+                    <label class="layui-form-label" for="product_desc">产品描述</label>
+                    <div class="layui-input-block">
+                        <textarea placeholder="请按照填写说明输入产品描述" class="layui-textarea"
+                                  id="product_desc"><%= product && product.desc %></textarea>
+                    </div>
+                </div>
+
+                <div class="layui-form-item">
+                    <label class="layui-form-label" for="product_imgUrl">产品图片</label>
+                    <div class="layui-input-block">
+                        <input type="text" value="<%= product && product.imgUrl %>"
+                               placeholder="请输入产品的图片地址"
+                               autocomplete="on" class="layui-input" id="product_imgUrl">
+                    </div>
+                </div>
+
+                <!--平台概述-->
+                <div class="layui-form-item">
+                    <label class="layui-form-label" for="product_character">技术参数</label>
+                    <div class="layui-input-block">
+                        <textarea id="product_character" placeholder="请按照填写说明输入产品的技术参数"
+                                  class="layui-textarea"><%= product && product.character %></textarea>
+                    </div>
+                </div>
+
+                <div class="layui-form-item">
+                    <label class="layui-form-label" for="product_note">填写说明</label>
+                    <div class="layui-input-block">
+                        <textarea id="product_note" style="cursor: not-allowed;color:red"
+                                  disabled="disabled" class="layui-textarea">产品描述填写格式如：；内容1||内容2||内容3...; 技术参数填写格式如：特征名称1=特征参数&&特征名称2=特征参数2...
+                        </textarea>
+                    </div>
+                </div>
+
+                <div class="layui-form-item mt-30 pb-30">
+                    <div class="layui-input-block">
+                        <button class="layui-btn" type="button" id="save_product">保存</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+	$(document).ready(function () {
+		layer.config({
+			title: '提示'
+		})
+
+		layui.use('form', function () {
+			var form = layui.form;
+		})
+
+		$("#save_product").bind('click', function () {
+			var product_id = $('#product_id').val();
+			var product_desc = $("#product_desc").val();
+			var product_name = $('#product_name').val();
+			var product_imgUrl = $("#product_imgUrl").val();
+			var product_character = $("#product_character").val();
+			var product_smallCategory = $("#product_smallCategory").val();
+			var product_category = $("input[name='product_category']:checked").val();
+			if (!(product_category.trim() && product_name.trim() && product_smallCategory.trim() && product_imgUrl.trim())) {
+				layer.msg("产品信息不能为空哦😯!");
+				return;
+			}
+
+			$.ajax({
+				type: 'POST',
+				url: '/admin/product/save',
+				data: {
+					productId: product_id,
+					name: product_name,
+					desc: product_desc,
+					imgUrl: product_imgUrl,
+					smallCategory: product_smallCategory,
+					character: product_character,
+					category: product_category
+				}
+			}).done(function (res) {
+				if (res.success === 1) {
+					layer.msg("产品信息保存成功!")
+					location.replace('/admin/productList')
+				}
+			})
+
+		})
+	})
+</script>
+</body>

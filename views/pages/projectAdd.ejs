@@ -1,0 +1,85 @@
+<% include ../includes/backend-head.ejs %>
+<body style="overflow-x: hidden;background-color: #eee;">
+<% include ../includes/backend-header.ejs %>
+<div class="main">
+    <% include ../includes/backend-sidebar.ejs %>
+    <div class="backend-container">
+        <div class="row pb-10" style="margin-right: 0;margin-left: 0">
+            <h2 class="w100 tc"><%= project && project._id ? "工程案例更新" : "工程案例添加" %></h2>
+        </div>
+        <hr class="layui-bg-blue pt-5">
+        <div class="backend-content" style="background-color: #fff">
+            <div class="layui-form" style="padding: 0 15px">
+                <div class="layui-form-item">
+                    <div class="layui-input-block">
+                        <input type="hidden" value="<%= project && project._id %>" class="layui-input"
+                               id="project_id">
+                    </div>
+                </div>
+
+                <div class="layui-form-item">
+                    <label class="layui-form-label" for="project_title">案例名称</label>
+                    <div class="layui-input-block">
+                        <input type="text" value="<%= project && project.title %>"
+                               placeholder="请输入工程案例名称"
+                               autocomplete="on" class="layui-input" id="project_title">
+                    </div>
+                </div>
+
+                <div class="layui-form-item">
+                    <label class="layui-form-label" for="project_imgUrl">案例图片</label>
+                    <div class="layui-input-block">
+                        <input type="text" value="<%= project && project.imgUrl %>"
+                               placeholder="请输入产品案例图片的url地址"
+                               autocomplete="on" class="layui-input" id="project_imgUrl">
+                    </div>
+                </div>
+
+                <div class="layui-form-item mt-30 pb-30">
+                    <div class="layui-input-block">
+                        <button class="layui-btn" type="button" id="save_project">保存</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+	$(document).ready(function () {
+		layer.config({
+			title: '提示'
+		})
+
+		layui.use('form', function () {
+			var form = layui.form;
+		})
+
+		$("#save_project").bind('click', function () {
+			var project_id = $('#project_id').val();
+			var project_title = $('#project_title').val();
+			var project_imgUrl = $('#project_imgUrl').val();
+			if (!(project_title.trim() && project_imgUrl.trim())) {
+				layer.msg("案例信息不能为空哦😯!");
+				return;
+			}
+
+			$.ajax({
+				type: 'POST',
+				url: '/admin/project/save',
+				data: {
+					projectId: project_id,
+					title: project_title,
+					imgUrl: project_imgUrl,
+				}
+			}).done(function (res) {
+				if (res.success === 1) {
+					layer.msg("案例保存成功!")
+					location.replace('/admin/projectList')
+				}
+			})
+
+		})
+	})
+</script>
+</body>

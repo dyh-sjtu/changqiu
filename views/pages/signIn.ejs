@@ -1,0 +1,37 @@
+<% include ../includes/backend-head.ejs %>
+<body>
+<div class="layui-container">
+    <div class="layui-row flex-column mt-200 w100 border-1">
+        <div class="flex-cc mt-50">
+            <img src="https://changqiu.oss-cn-zhangjiakou.aliyuncs.com/img/logo.png" width="300" alt="">
+        </div>
+        <div class="layui-col-md12 mt-20">
+            <form class="layui-form flex-column" action="/admin/user/signIn" method="post" enctype="application/x-www-form-urlencoded">
+                <div class="layui-form-item w100">
+                    <label for="username" class="layui-form-label">用户</label>
+                    <div class="layui-input-block">
+                        <input type="email" name="user[name]" class="layui-input" id="username" placeholder="请输入您的用户名">
+                    </div>
+                </div>
+                <div class="layui-form-item w100">
+                    <label for="password" class="layui-form-label">密码</label>
+                    <div class="layui-input-block">
+                        <input type="password" name="user[password]" class="layui-input" id="password" placeholder="请输入您的密码">
+                    </div>
+                </div>
+                <div class="layui-form-item mt-20">
+                    <div class="layui-input-block" style="margin-left: 0">
+                        <button type="submit" class="layui-btn" style="width: 100px">登录</button>
+                    </div>
+                </div>
+                <div class="flex-cc">
+                    没有账号？去&nbsp;<a href="/admin/user/signUp" style="color: #1E88C7" class="text-decoration">注册</a>
+                </div>
+                <div class="mt-20 mb-20 flex-cc">
+                    <a href="/" class="text-decoration">上海畅球智能科技</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</body>

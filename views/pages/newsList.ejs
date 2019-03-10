@@ -1,0 +1,104 @@
+<% include ../includes/backend-head.ejs %>
+<body style="overflow-x: hidden;background-color: #eee;">
+<% include ../includes/backend-header.ejs %>
+<div class="main">
+    <% include ../includes/backend-sidebar.ejs %>
+    <div class="backend-container">
+        <div class="row pb-10" style="margin-right: 0;margin-left: 0">
+            <h2 class="w100 tc">新闻列表</h2>
+            <a href="/admin/news/add">
+                <button class="layui-btn layui-btn-normal" style="position: absolute; right: 20px; top: 15px">
+                    <i class="layui-icon layui-icon-add-circle"></i>
+                    <span style="position: relative;top: -2px;">添加新闻</span>
+                </button>
+            </a>
+        </div>
+        <hr class="layui-bg-blue pt-5">
+        <div class="backend-content" style="overflow: scroll">
+            <table class="layui-table">
+                <colgroup>
+                    <col width="80">
+                    <col width="150">
+                    <col width="300">
+                    <col width="150">
+                </colgroup>
+                <thead>
+                <tr>
+                    <th>序号</th>
+                    <th>新闻标题</th>
+                    <th>新闻内容</th>
+                    <th>创建时间</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                <% newsList.forEach(function (news, index) { %>
+                <tr>
+                    <td>
+                        <%= index + 1 %>
+                    </td>
+                    <td class="text-over" style="max-width: 200px">
+                        <%= news.title %>
+                    </td>
+                    <td class="text-over" style="max-width: 300px">
+                        <%= news.content %>
+                    </td>
+                    <td>
+                        <%= moment(news.meta.updateAt).format("YYYY-MM-DD") %>
+                    </td>
+                    <td>
+                        <button class="news-del layui-btn layui-btn-danger"
+                                data-id="<%= news._id %>">删除<i class="layui-icon layui-icon-delete"
+                                                               style="position: relative;top: 1px"></i>
+                        </button>
+                        <a href="/admin/news/update/<%= news._id %>">
+                            <button class="news-update layui-btn">更新<i class="layui-icon layui-icon-refresh"
+                                                                   style="font-size: 14px"></i>
+                            </button>
+                        </a>
+                        <a href="/admin/news/detail/<%= news._id %>">
+                            <button class="news-view layui-btn">查看<i class="layui-icon layui-icon-link"
+                                                                   style="font-size: 14px"></i>
+                            </button>
+                        </a>
+                    </td>
+                </tr>
+                <% }) %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+	$(document).ready(function () {
+		layer.config({
+			title: '提示'
+		})
+		$('.news-del').bind('click', function () {
+			let newsId = $(this).data("id");
+			let tr = $(this).parents("tr");
+			if (newsId) {
+				layer.confirm("确定删除该用户?删除后将不能恢复", {
+					btn: ['确认', '取消'],
+					btn1: function (index) {
+						$.ajax({
+							type: 'DELETE',
+							url: '/admin/newsList/del?newsId=' + newsId
+						}).done(function (res) {
+							if (res.success === 1) {
+								tr.remove();
+							} else {
+								layer.alert("删除失败，请重试！")
+							}
+							layer.close(index);
+						})
+					},
+					btn2: function (index) {
+						layer.close(index)
+					}
+				})
+			}
+		})
+	})
+</script>
+</body>

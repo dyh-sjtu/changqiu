@@ -1,0 +1,21 @@
+<% include ../includes/backend-head.ejs %>
+<body style="overflow-x: hidden;background-color: #eee;">
+<% include ../includes/backend-header.ejs %>
+<div class="main">
+    <% include ../includes/backend-sidebar.ejs %>
+    <div class="backend-container">
+        <div class="row pb-10" style="margin-right: 0;margin-left: 0">
+            <h2 class="w100 tc">
+                <%= news.title %>
+            </h2>
+            <hr class="layui-bg-gray">
+            <h6 class="w100 tc" style="color: #ccc; position: relative; right: 20px">
+                时间:<%= moment(news.time).format("YYYY-MM-DD") %>
+            </h6>
+        </div>
+        <div class="scroll-content">
+            <%- news.content %>
+        </div>
+    </div>
+</div>
+</body>

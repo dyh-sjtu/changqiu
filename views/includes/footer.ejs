@@ -1,0 +1,74 @@
+<!-- footer start -->
+
+<!-- footer end -->
+
+<!-- All js here -->
+<script type="text/javascript">
+	$(document).ready(function () {
+		// 给轮播图设置初始margin
+		var headerHeight = $("header").outerHeight();
+		$(".wrapper-box").css("marginTop", headerHeight + "px");
+	})
+</script>
+<script type="text/javascript">
+	$(document).ready(function () {
+
+		// 获取友情链接
+		$.ajax({
+			type: 'GET',
+			url: '/index/friendLink'
+		}).done(function (res) {
+			if (res.success === 1) {
+				var friendLinks = res.data.friendLinks;
+				var htmlStr = '';
+				friendLinks.forEach(function (friendLink, index) {
+					htmlStr += "<li><a href='" + friendLink.url + "' target='_blank'>" + friendLink.title + "</a></li>"
+				})
+				$(".friendLink").html(htmlStr);
+			}
+		})
+
+		// 获取公司信息
+		$.ajax({
+			type: 'GET',
+			url: '/index/companyInfo'
+		}).done(function (res) {
+			if (res.success === 1) {
+				var companyInfo = res.data.companyInfo;
+				var htmlStr = '';
+				if (companyInfo && companyInfo.phoneNumber) {
+					htmlStr += "<li>产品咨询: " + companyInfo.phoneNumber + "</li>"
+				}
+				if (companyInfo && companyInfo.email) {
+					htmlStr += "<li>联系邮箱: " + companyInfo.email + "</li>"
+				}
+				if (companyInfo && companyInfo.address) {
+					htmlStr += "<li>公司地址: " + companyInfo.address + "</li>"
+				}
+				if (companyInfo && companyInfo.tel) {
+					htmlStr += "<li>服务热线: " + companyInfo.tel + "</li>"
+				}
+				$(".footerCompanyInfo").html(htmlStr);
+			}
+		})
+
+//		// 获取产品列表
+//		$.ajax({
+//			type: 'GET',
+//			url: '/index/product'
+//		}).done(function (res) {
+//			if (res.success === 1) {
+//				var products = res.data.products;
+//				var htmlStr = '';
+//				var productHtmlStr = '';
+//				products.forEach(function (product, index) {
+//					htmlStr += "<li><a href='/product/detail/" + product._id + "'>" + product.name + "</a></li>";
+//					productHtmlStr += "<li><a href='/product/detail/" + product._id + "'>" + product.cnName + "</a></li>";
+//				})
+//				$(".product_menu").html(htmlStr);
+//				$(".product_link").html(productHtmlStr);
+//			}
+//		})
+	})
+</script>
+<script src="https://cdn.bootcss.com/twitter-bootstrap/4.0.0/js/bootstrap.min.js"></script>

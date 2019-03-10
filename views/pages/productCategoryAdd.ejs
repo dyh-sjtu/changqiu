@@ -1,0 +1,69 @@
+<% include ../includes/backend-head.ejs %>
+<body style="overflow-x: hidden;background-color: #eee;">
+<% include ../includes/backend-header.ejs %>
+<div class="main">
+    <% include ../includes/backend-sidebar.ejs %>
+    <div class="backend-container">
+        <div class="row pb-10" style="margin-right: 0;margin-left: 0">
+            <h2 class="w100 tc"><%= productCategory && productCategory._id ? "产品类型更新" : "产品类型添加" %></h2>
+        </div>
+        <hr class="layui-bg-blue pt-5">
+        <div class="backend-content" style="background-color: #fff">
+            <div class="layui-form" style="padding: 0 15px">
+                <div class="layui-form-item">
+                    <div class="layui-input-block">
+                        <input type="hidden" value="<%= productCategory && productCategory._id %>" class="layui-input"
+                               id="productCategory_id">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label" for="productCategory_name">产品类型名称</label>
+                    <div class="layui-input-block">
+                        <input type="text" value="<%= productCategory && productCategory.name %>"
+                               placeholder="请输入产品类型名称"
+                               autocomplete="on" class="layui-input" id="productCategory_name">
+                    </div>
+                </div>
+
+                <div class="layui-form-item mt-30 pb-30">
+                    <div class="layui-input-block">
+                        <button class="layui-btn" type="button" id="save_productCategory">保存</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+	$(document).ready(function () {
+		layer.config({
+			title: '提示'
+		})
+
+		$("#save_productCategory").bind('click', function () {
+			var productCategory_id = $('#productCategory_id').val();
+			var productCategory_name = $('#productCategory_name').val();
+			if (!(productCategory_name.trim())) {
+				layer.msg("产品类型信息不能为空哦😯!");
+				return;
+			}
+
+			$.ajax({
+				type: 'POST',
+				url: '/admin/productCategory/save',
+				data: {
+					productCategoryId: productCategory_id,
+					name: productCategory_name,
+				}
+			}).done(function (res) {
+				if (res.success === 1) {
+					layer.msg("产品类型保存成功!")
+					location.replace('/admin/productCategoryList')
+				}
+			})
+
+		})
+	})
+</script>
+</body>
