@@ -1,2 +1,2 @@
 # nmist
-the front && backend system for nmist
+the front && backend system for changqiu
