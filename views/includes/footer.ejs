@@ -1,15 +1,82 @@
-<!-- footer start -->
+<!-- Footer Main -->
+<footer id="footer-main" class="footer-main container-fluid no-left-padding no-right-padding">
+    <!-- Container -->
+    <div class="container">
+        <!-- Row -->
+        <div class="row">
+            <!-- wechat -->
+            <div class="col-md-2 col-sm-4 col-xs-4">
+                <aside class="widget widget_about">
+                    <h3 class="widget-title">官方微信</h3>
+                    <div>
+                        <img src="/img/ewm.png" alt="官方微信">
+                    </div>
+                </aside>
+            </div>
+            <!-- wechat /- -->
+            <!-- Widget Links -->
+            <div class="col-md-3 col-sm-6 col-xs-6">
+                <aside class="widget widget_links">
+                    <h3 class="widget-title">快速链接</h3>
+                    <ul>
+                        <li><a href="/index" title="">首页</a></li>
+                        <li><a href="/product" title="产品展示">产品展示</a></li>
+                        <li><a href="/project" title="工程案例">工程案例</a></li>
+                        <li><a href="/news" title="新闻资讯">新闻资讯</a></li>
+                        <li><a href="/about" title="关于我们">关于我们</a></li>
+                        <li><a href="/contact" title="联系我们">联系我们</a></li>
+                    </ul>
+                </aside>
+            </div><!-- Widget Links /- -->
+            <!-- Widget Links -->
+            <div class="col-md-3 col-sm-6 col-xs-6">
+                <aside class="widget widget_services">
+                    <h3 class="widget-title">友情链接</h3>
+                    <ul class="friendLink">
+                    </ul>
+                </aside>
+            </div><!-- Widget Links /- -->
+            <!-- Widget Info -->
+            <div class="col-md-4 col-sm-8 col-xs-8">
+                <aside class="widget widget_info company-info">
+                    <h3 class="widget-title">联系我们</h3>
+                </aside>
+            </div>
+            <!-- Widget Info /- -->
+        </div><!-- Row /- -->
+    </div><!-- Container /- -->
+</footer><!-- Footer Main /- -->
 
-<!-- footer end -->
+<div class="copyright-section container-fluid no-left-padding no-right-padding">
+    <!-- Container -->
+    <div class="container">
+        <p class="mt-10">上海畅球智能科技有限公司 2006-2016 版权所有</p>
+        <p class="mt-10">&copy; Copyright 2006-2016 Auto Parts All Right Reserved</p>
+        <div class="mb-10">
+            <p><img src="/img/gsj.png" class="mr-10" alt="备案">沪ICP备16044646号</p>
+        </div>
+    </div><!-- Container /- -->
+    <div></div>
+</div>
+</div>
 
+<!-- JQuery v1.11.3 -->
+<script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+
+<!-- Library - Js -->
+<script src="/js/lib.js"></script>
+
+<!-- RS5.0 Core JS Files -->
+<script type="text/javascript" src="/revolution/js/jquery.themepunch.tools.min.js?rev=5.0"></script>
+<script type="text/javascript" src="/revolution/js/jquery.themepunch.revolution.min.js?rev=5.0"></script>
+<script type="text/javascript" src="/revolution/js/extensions/revolution.extension.video.min.js"></script>
+<script type="text/javascript" src="/revolution/js/extensions/revolution.extension.slideanims.min.js"></script>
+<script type="text/javascript" src="/revolution/js/extensions/revolution.extension.layeranimation.min.js"></script>
+<script type="text/javascript" src="/revolution/js/extensions/revolution.extension.navigation.min.js"></script>
+
+<!-- Library - Theme JS -->
+<script src="/js/functions.js"></script>
 <!-- All js here -->
-<script type="text/javascript">
-	$(document).ready(function () {
-		// 给轮播图设置初始margin
-		var headerHeight = $("header").outerHeight();
-		$(".wrapper-box").css("marginTop", headerHeight + "px");
-	})
-</script>
 <script type="text/javascript">
 	$(document).ready(function () {
 
@@ -35,40 +102,23 @@
 		}).done(function (res) {
 			if (res.success === 1) {
 				var companyInfo = res.data.companyInfo;
-				var htmlStr = '';
+				var ele = $('.company-info');
+				if (companyInfo && companyInfo.tel) {
+					ele.append("<p><i class='icon icon-Phone2'></i><span>咨询热线: </span><a href='tel:" + companyInfo.tel + "' title='" + companyInfo.tel + "'>" + companyInfo.tel + "</a></p>")
+				}
 				if (companyInfo && companyInfo.phoneNumber) {
-					htmlStr += "<li>产品咨询: " + companyInfo.phoneNumber + "</li>"
+					ele.append("<p><i class='icon icon-Phone'></i><span>销售热线: </span><a href='tel:" + companyInfo.phoneNumber + "' title='" + companyInfo.phoneNumber + "'>" + companyInfo.phoneNumber + "</a></p>")
+
 				}
 				if (companyInfo && companyInfo.email) {
-					htmlStr += "<li>联系邮箱: " + companyInfo.email + "</li>"
+					ele.append("<p><i class='icon icon-Mail'></i><span>联系邮箱: </span><a href='mailto:" + companyInfo.email + "' title='" + companyInfo.email + "'>" + companyInfo.email + "</a></p>")
+
 				}
 				if (companyInfo && companyInfo.address) {
-					htmlStr += "<li>公司地址: " + companyInfo.address + "</li>"
+					ele.append("<p><i class='icon icon-House'></i><span>公司地址: </span>" + companyInfo.address + "</p>")
 				}
-				if (companyInfo && companyInfo.tel) {
-					htmlStr += "<li>服务热线: " + companyInfo.tel + "</li>"
-				}
-				$(".footerCompanyInfo").html(htmlStr);
+				ele.append("<p><i class='icon icon-Time'></i><span>服务时间: </span> 00:00 - 24:00 </p>")
 			}
 		})
-
-//		// 获取产品列表
-//		$.ajax({
-//			type: 'GET',
-//			url: '/index/product'
-//		}).done(function (res) {
-//			if (res.success === 1) {
-//				var products = res.data.products;
-//				var htmlStr = '';
-//				var productHtmlStr = '';
-//				products.forEach(function (product, index) {
-//					htmlStr += "<li><a href='/product/detail/" + product._id + "'>" + product.name + "</a></li>";
-//					productHtmlStr += "<li><a href='/product/detail/" + product._id + "'>" + product.cnName + "</a></li>";
-//				})
-//				$(".product_menu").html(htmlStr);
-//				$(".product_link").html(productHtmlStr);
-//			}
-//		})
 	})
 </script>
-<script src="https://cdn.bootcss.com/twitter-bootstrap/4.0.0/js/bootstrap.min.js"></script>

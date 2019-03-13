@@ -104,16 +104,19 @@ router.delete('/admin/productCategoryList/del', Auth.requiredLogin, Auth.require
 	}
 });
 
-router.get('/index/productCategory', (req, res) => {
+router.get('/index/product/category', (req, res) => {
 	try {
-		ProductCategory.find({}).exec((err, productCategorys) => {
-			return res.json({
-				success: 1,
-				data: {
-					productCategorys: productCategorys
-				}
-			})
-		});
+		let productCategoryId = req.query.productCategoryId;
+		if (productCategoryId) {
+			Product.find({category: productCategoryId}).exec((err, products) => {
+				return res.json({
+					success: 1,
+					data: {
+						products: products
+					}
+				})
+			});
+		}
 	} catch (err) {
 		console.log('err', err)
 	}

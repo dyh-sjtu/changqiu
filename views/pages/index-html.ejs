@@ -1,0 +1,318 @@
+<main>
+    <!-- Slider Section 2 -->
+    <div id="home-revslider" class="slider-section slider-section2 container-fluid no-padding">
+        <!-- START REVOLUTION SLIDER 5.0 -->
+        <div class="rev_slider_wrapper">
+            <div id="home-slider2" class="rev_slider" data-version="5.3">
+                <ul>
+                    <li data-transition="zoomout" data-slotamount="default" data-easein="easeInOut"
+                        data-easeout="easeInOut" data-masterspeed="2000" data-rotate="0" data-fstransition="fade"
+                        data-fsmasterspeed="1500" data-fsslotamount="7">
+                        <img src="/img/banner_1.jpg" alt="slider" data-bgposition="center center" data-bgfit="cover"
+                             data-bgrepeat="no-repeat" data-bgparallax="10" class="rev-slidebg" data-no-retina>
+                        <div class="tp-caption tp-shape tp-shapewrapper" id="slide-layer-0"
+                             data-x="['center','center','center','center']"
+                             data-y="['middle','middle','middle','middle']"
+                             data-basealign="slide"
+                             data-height="full"
+                             data-hoffset="['0','0','0','0']"
+                             data-responsive="off"
+                             data-responsive_offset="off"
+                             data-start="0"
+                             data-transform_idle="o:1;"
+                             data-transform_in="opacity:0;s:2000;e:Power2.easeInOut;"
+                             data-transform_out="opacity:0;s:500;s:500;"
+                             data-voffset="['0','0','0','0']"
+                             data-whitespace="nowrap"
+                             data-width="full"
+                             style="z-index: 5;background-color:rgba(0, 0, 0, 0.6);">
+                        </div>
+                    </li>
+
+                    <li data-transition="zoomout" data-slotamount="default" data-easein="easeInOut"
+                        data-easeout="easeInOut" data-masterspeed="2000" data-rotate="0" data-fstransition="fade"
+                        data-fsmasterspeed="1500" data-fsslotamount="7">
+                        <img src="/img/banner_2.jpg" alt="slider" data-bgposition="center center" data-bgfit="cover"
+                             data-bgrepeat="no-repeat" data-bgparallax="10" class="rev-slidebg" data-no-retina>
+                        <div class="tp-caption tp-shape tp-shapewrapper" id="slide-layer-5"
+                             data-x="['center','center','center','center']"
+                             data-y="['middle','middle','middle','middle']"
+                             data-basealign="slide"
+                             data-height="full"
+                             data-hoffset="['0','0','0','0']"
+                             data-responsive="off"
+                             data-responsive_offset="off"
+                             data-start="0"
+                             data-transform_idle="o:1;"
+                             data-transform_in="opacity:0;s:2000;e:Power2.easeInOut;"
+                             data-transform_out="opacity:0;s:500;s:500;"
+                             data-voffset="['0','0','0','0']"
+                             data-whitespace="nowrap"
+                             data-width="full"
+                             style="z-index: 5;background-color:rgba(0, 0, 0, 0.6);">
+                        </div>
+                    </li>
+                    <li data-transition="zoomout" data-slotamount="default" data-easein="easeInOut"
+                        data-easeout="easeInOut" data-masterspeed="2000" data-rotate="0" data-fstransition="fade"
+                        data-fsmasterspeed="1500" data-fsslotamount="7">
+                        <img src="/img/banner_3.jpg" alt="slider" data-bgposition="center center" data-bgfit="cover"
+                             data-bgrepeat="no-repeat" data-bgparallax="10" class="rev-slidebg" data-no-retina>
+                        <div class="tp-caption tp-shape tp-shapewrapper" id="slide-layer-5"
+                             data-x="['center','center','center','center']"
+                             data-y="['middle','middle','middle','middle']"
+                             data-basealign="slide"
+                             data-height="full"
+                             data-hoffset="['0','0','0','0']"
+                             data-responsive="off"
+                             data-responsive_offset="off"
+                             data-start="0"
+                             data-transform_idle="o:1;"
+                             data-transform_in="opacity:0;s:2000;e:Power2.easeInOut;"
+                             data-transform_out="opacity:0;s:500;s:500;"
+                             data-voffset="['0','0','0','0']"
+                             data-whitespace="nowrap"
+                             data-width="full"
+                             style="z-index: 5;background-color:rgba(0, 0, 0, 0.6);">
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div><!-- END OF SLIDER WRAPPER -->
+    </div>
+    <!-- Slider Section 2 /- -->
+
+    <!--产品展示-->
+    <div class="gallery-section gallery-section2 container-fluid no-left-padding no-right-padding">
+        <!-- Container -->
+        <div class="container">
+            <!-- Section Header -->
+            <div class="section-header">
+                <h3>产品展示</h3>
+                <img src="/img/seprator.png" alt="seprator"/>
+            </div><!-- Section Header /- -->
+            <ul id="filters" class="portfolio-categories no-left-padding">
+                <% productCategorys && productCategorys.length > 0 && productCategorys.forEach(function (productCategory, index) { %>
+                <% if (index === 0) { %>
+                <li class="active product-category"
+                    data-id="<%= productCategory._id %>"><%= productCategory.name %></li>
+                <% } else { %>
+                <li class="product-category" data-id="<%= productCategory._id %>"><%= productCategory.name %></li>
+                <% } %>
+                <% }) %>
+            </ul>
+            <div class="row">
+                <ul class="portfolio-list no-left-padding changqiu-products">
+                    <% products && products.length > 0 && products.forEach(function (product, index) { %>
+                    <li class="col-md-3 col-sm-6 col-xs-6">
+                        <div class="content-image-block">
+                            <img src="<%= product.imgUrl %>">
+                            <div class="content-block-hover">
+                                <a class="zoom-in" href="<%= product.imgUrl %>"><i
+                                            class="icon icon-Search"></i></a>
+                                <a href="/product/detail?productId=<%= product._id %>" title="Link"><i class="icon icon-Linked"></i></a>
+                                <h5><%= product.name %></h5>
+                            </div>
+                        </div>
+                    </li>
+                    <% }) %>
+                </ul>
+            </div>
+        </div><!-- Container /- -->
+    </div>
+    <!--产品展示结束 /-->
+
+    <!-- 关于我们 -->
+    <div class="who-we-are no-left-padding no-right-padding container-fluid">
+        <!-- Container -->
+        <div class="container">
+            <!-- Section Header -->
+            <div class="section-header">
+                <h3>关于我们</h3>
+                <img src="/img/seprator.png" alt="seprator"/>
+            </div><!-- Section Header /- -->
+            <div class="col-md-7 col-sm-12 col-xs-12">
+                <div class="form-box">
+                    <div class="we-are-img">
+                        <img src="/img/we-are.jpg" alt="seprator"/>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-5 col-sm-12 col-xs-12">
+                <div class="why-choose-box">
+                    <h3 class="we-are-box"><i class="icon icon-Flag"></i>关于畅球</h3>
+                    <p class="text-over-line">
+                        上海畅球智能科技有限公司注册资金人民币1000万元，是一家专业从事智能系统开发的高科技企业。公司长期致力于以RFID、生物识别、物联网为核心技术的高端应用系统的研发与销售，产品覆盖：停车管理、行车引导、人行通道、人脸识别等数十个子系统，可以快速搭建完整、安全、高效的出入控制与管理平台，为智慧社区、智慧园区、智慧商业广场等提供无人值守出入管理整体解决方案，广泛应用于住宅社区、公共设施、商业办公、政府机关、工业园区等场所。
+                        公司集研发、生产、销售、服务于一体，经过多年潜心经营，以精研技术与真挚服务，获得众多用户的高度认可，在业内享有颇高的知名度，是人工智能领域的引领性品牌。畅球深挖需求、广纳人才、细研技术、用心服务，争做智慧城市现代化建设的主力军</p>
+                </div>
+                <div class="about-us mt-20">
+                    <a href="/about">
+                        <button>了解更多</button>
+                    </a>
+                </div>
+            </div>
+        </div><!-- Container -->
+    </div>
+    <!-- 关于我们 /- -->
+
+    <!-- Services Section2 -->
+    <div class="services-section services-section2 no-left-padding no-right-padding container-fluid">
+        <!-- Container -->
+        <div class="container">
+            <!-- Section Header -->
+            <div class="section-header">
+                <h3>服务与支持</h3>
+                <img src="/img/seprator.png" alt="seprator"/>
+                <p>想您所想 解您所忧</p>
+            </div><!-- Section Header /- -->
+            <div class="col-md-3 col-sm-6 col-xs-6">
+                <div class="srv-box news-wrapper">
+                    <i class="icon icon-Screwdriver"></i>
+                    <h5>企业理念</h5>
+                    <p class="text-over-line">老老实实做人 踏踏实实做事 为员工创造机会 为社会创造价值</p>
+                    <a href="#" title="Read More">了解更多</a>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6 col-xs-6">
+                <div class="srv-box news-wrapper">
+                    <i class="icon icon-Bulb"></i>
+                    <h5>服务宗旨</h5>
+                    <p class="text-over-line">第一时间响应客户需求 为客户提供最佳产品和优化方案 客户的满意就是我们不断地追求</p>
+                    <a href="#" title="Read More">了解更多</a>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6 col-xs-6">
+                <div class="srv-box news-wrapper">
+                    <i class="icon icon-Wrench"></i>
+                    <h5>服务理念</h5>
+                    <p class="text-over-line">一直以来 公司本着“第一时间响应客户需求 为客户提供最佳产品和优化方案”为标准 严格把控产品质量和售后服务 客户的满意就是我们不断地追求</p>
+                    <a href="#" title="Read More">了解更多</a>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6 col-xs-6">
+                <div class="srv-box news-wrapper">
+                    <i class="icon icon-WorldGlobe"></i>
+                    <h5>品质保障</h5>
+                    <p class="text-over-line">上海畅球已通过ISO9001质量管理体系认证 产品均是按照质量体系要求进行设计 生产 销售的 公司产品广泛应用于小区 商业中心 医院 政府部门 学校
+                        驾校 交通枢纽等车流量集中的场所 得到了用户的广泛的认可</p>
+                    <a href="#" title="Read More">了解更多</a>
+                </div>
+            </div>
+        </div><!-- Container /- -->
+    </div><!-- Services Section2 -->
+
+    <!-- Counter Section -->
+    <div class="counter-section no-left-padding no-right-padding container-fluid">
+    </div><!-- Counter Section /- -->
+
+    <!-- Latest Blog -->
+    <div class="latest-blog container-fluid no-left-padding no-right-padding">
+        <!-- Container -->
+        <div class="container">
+            <!-- Section Header -->
+            <div class="section-header">
+                <h3>新闻动态</h3>
+                <img src="/img/seprator.png" alt="seprator"/>
+            </div><!-- Section Header /- -->
+            <!-- Row -->
+            <div class="row">
+                <div class="col-md-6 col-sm-12 col-xs-12">
+                    <% if (news && news.length > 0) { %>
+                    <div class="type-post news-wrapper">
+                        <div class="entry-cover">
+                            <a title="<%= news[0].title %>" href="/news/<%= news[0]._id %>">
+                                <img alt="<%= news[0].title %>" src="<%= news[0].src %>"/>
+                            </a>
+                        </div>
+                        <h3 class="entry-title text-over">
+                            <a title="<%= news[0].title %>" href="/news/<%= news[0]._id %>"><%= news[0].title %></a>
+                        </h3>
+                        <div class="entry-meta">
+                            <div class="post-date">
+                                <a href="javascript:;" title="日期">
+                                    <i class="icon icon-Time">
+                                        <%= moment(news[0].time).format("YYYY-MM-DD") %>
+                                    </i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="entry-content">
+                            <div class="text-over-line mb-20">
+                                <%- news[0].content %>
+                            </div>
+                            <a href="/news/<%= news[0]._id %>" title="查看详情">查看详情</a>
+                        </div>
+                    </div>
+                    <% } %>
+                </div>
+                <div class="col-md-6 col-sm-12 col-xs-12 post-right">
+                    <% news && news.length > 0 && news.forEach(function (item, index) { %>
+                    <div class="type-post news-wrapper">
+                        <div class="entry-cover" style="width: 180px">
+                            <a title="<%= item.title %>" href="/news/<%= item._id %>">
+                                <img alt="<%= item.title %>" src="<%= item.src %>"/>
+                            </a>
+                        </div>
+                        <h3 class="entry-title text-over">
+                            <a title="<%= item.title %>" href="/news/<%= item._id %>"><%= item.title %></a>
+                        </h3>
+                        <div class="entry-meta">
+                            <div class="post-date">
+                                <a href="javascript:;" title="日期">
+                                    <i class="icon icon-Time">
+                                        <%= moment(item.time).format("YYYY-MM-DD") %>
+                                    </i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="entry-content">
+                            <div class="news-text-over-line mb-15">
+                                <%- item.content %>
+                            </div>
+                            <a href="/news/<%= item._id %>" title="continue reading">查看详情</a>
+                        </div>
+                    </div>
+                    <% }) %>
+                </div>
+            </div><!-- Row /- -->
+        </div><!-- Container /- -->
+    </div><!-- Latest Blog /- -->
+
+    <!-- Call Out -->
+    <div class="call-out no-left-padding no-right-padding container-fluid">
+        <!-- Container -->
+        <div class="container">
+            <div class="call-out-content">
+                <h5 class="mr-10">畅球智能科技诚意邀请</h5>
+                <p>赶紧拨打我们的咨询热线，成为畅球智能的合作伙伴，成就您的事业<br></p>
+                <a href="/conatct" title="联系我们">联系我们</a>
+            </div>
+        </div><!-- Container /- -->
+    </div><!-- Call Out /- -->
+
+    <!-- 工程案例 -->
+    <div class="clients container-fluid">
+        <!-- Container -->
+        <div class="container">
+            <!-- Section Header -->
+            <div class="section-header">
+                <h3>工程案例</h3>
+                <img src="/img/seprator.png" alt="seprator"/>
+            </div><!-- Section Header /- -->
+            <div class="clients-carousel">
+                <% projects && projects.length > 0 && projects.forEach(function (project, index) { %>
+                <div class="col-md-12 item">
+                    <a href="<%= project.imgUrl %>" class="project-container" target="_blank"
+                       title="<%= project.title %>">
+                        <div style="height:148px;width:100%;background-image: url('<%= project.imgUrl %>');background-size: cover;background-repeat: no-repeat"></div>
+                        <span class="project_introduction"><%= project.title %></span>
+                    </a>
+                    <h5 class="tc mt-10"><%= project.title %></h5>
+                </div>
+                <% }) %>
+            </div>
+        </div>
+    </div><!-- Container /- -->
+    </div>
+    <!-- 工程案例 /- -->
+</main>
+

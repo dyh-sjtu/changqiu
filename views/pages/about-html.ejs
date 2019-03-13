@@ -1,0 +1,66 @@
+<main>
+    <!-- Page Banner -->
+    <div class="aboutUs-page-banner page-banner container-fluid">
+        <!-- Container -->
+        <div class="container">
+            <div class="banner-content">
+                <h3>关于我们</h3>
+                <ol class="breadcrumb">
+                    <li><a href="/index" title="首页">首页</a></li>
+                    <li class="active">关于我们</li>
+                </ol>
+            </div>
+        </div><!-- Container /- -->
+    </div><!-- Page Banner /- -->
+
+    <!-- About Section -->
+    <div class="about-section no-left-padding no-right-padding container-fluid">
+        <!-- Container -->
+        <div class="container">
+            <!-- Section Header -->
+            <div class="section-header">
+                <h3>关于我们</h3>
+                <img src="/img/seprator.png" alt="seprator" />
+            </div><!-- Section Header /- -->
+            <div class="col-md-12 col-sm-24 col-xs-24 weintern-font-large">
+                <div class="about-box">
+                    <p class="suojin"><%= company.introduction %></p>
+                </div>
+            </div>
+        </div><!-- Container /- -->
+    </div><!-- About Section /- -->
+
+    <!-- Product Section -->
+    <div class="product-section no-left-padding no-right-padding container-fluid">
+        <!-- Container -->
+        <div class="container">
+            <div class="row">
+                <!-- Section Header -->
+                <div class="section-header">
+                    <h3>荣誉证书</h3>
+                    <img src="/img/seprator.png" alt="seprator" />
+                </div><!-- Section Header /- -->
+                <!-- Products -->
+                <ul class="products">
+                    <!-- Product -->
+                    <% honors && honors.length > 0 && honors.forEach(function (honor, index) { %>
+                    <li class="product">
+                        <a href="javascript:;">
+                            <img src="<%= honor.imgUrl %>" style="height: 200px;width:100%" alt="<%= honor.name %>" />
+                            <div class="product-content">
+                                <h5><%= honor.name %></h5>
+                            </div>
+                        </a>
+                        <a href="<%= honor.imgUrl %>" class="zoom-in tc pt-10" title="<%= honor.name %>">
+                            <i class="icon icon-Eye"></i>
+                        </a>
+                    </li>
+                    <% }) %>
+                    <!-- Product /- -->
+                </ul>
+                <!-- Products /- -->
+            </div>
+        </div><!-- Container /- -->
+    </div><!-- Product Section /- -->
+
+</main>
