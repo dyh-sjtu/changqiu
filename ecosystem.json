@@ -14,11 +14,11 @@
   ],
   "deploy": {
     "production": {
-      "user": "dyhgj",
-      "host": ["47.99.109.130"],
+      "user": "dyh",
+      "host": ["47.92.215.178"],
       "port": "1026",
       "ref": "origin/master",
-      "repo": "https://github.com/dyh-sjtu/backend-nmist",
+      "repo": "https://github.com/dyh-sjtu/changqiu",
       "path": "/www/website/production",
       "ssh_options": "StrictHostKeyChecking=no",
       "post-deploy": "npm install && pm2 startOrRestart ecosystem.json --env production",
