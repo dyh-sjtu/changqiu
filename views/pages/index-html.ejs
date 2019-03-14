@@ -248,8 +248,8 @@
                     <% news && news.length > 0 && news.forEach(function (item, index) { %>
                     <div class="type-post news-wrapper">
                         <div class="entry-cover" style="width: 180px">
-                            <a title="<%= item.title %>" href="/news/<%= item._id %>">
-                                <img alt="<%= item.title %>" src="<%= item.src %>"/>
+                            <a title="新闻<%= index+1 %>" href="/news/<%= item._id %>">
+                                <img alt="新闻<%= index+1 %>" src="<%= item.src %>"/>
                             </a>
                         </div>
                         <h3 class="entry-title text-over">

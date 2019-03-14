@@ -1,0 +1,49 @@
+<main>
+    <!-- Page Banner -->
+    <div class="project-page-banner page-banner container-fluid">
+        <!-- Container -->
+        <div class="container">
+            <div class="banner-content">
+                <h3>工程案例</h3>
+                <ol class="breadcrumb">
+                    <li><a href="/index" title="首页">首页</a></li>
+                    <li class="active">工程案例</li>
+                </ol>
+            </div>
+        </div><!-- Container /- -->
+    </div><!-- Page Banner /- -->
+
+    <!-- Product Section -->
+    <div class="product-section no-left-padding no-right-padding container-fluid">
+        <!-- Container -->
+        <div class="container">
+            <div class="row">
+                <!-- Section Header -->
+                <div class="section-header">
+                    <h3>工程案例</h3>
+                    <img src="/img/seprator.png" alt="seprator" />
+                </div><!-- Section Header /- -->
+                <!-- Products -->
+                <ul class="products">
+                    <!-- Product -->
+                    <% projects && projects.length > 0 && projects.forEach(function (project, index) { %>
+                    <li class="product" style="max-height: 400px">
+                        <a href="javascript:;">
+                            <img src="<%= project.imgUrl %>" style="height: 250px;width:100%" alt="<%= project.title %>" />
+                            <div class="product-content">
+                                <h5><%= project.title %></h5>
+                            </div>
+                        </a>
+                        <a href="<%= project.imgUrl %>" class="zoom-in tc pt-10" title="<%= project.title %>">
+                            <i class="icon icon-Eye"></i>
+                        </a>
+                    </li>
+                    <% }) %>
+                    <!-- Product /- -->
+                </ul>
+                <!-- Products /- -->
+            </div>
+        </div><!-- Container /- -->
+    </div><!-- Product Section /- -->
+
+</main>

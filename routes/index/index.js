@@ -60,7 +60,7 @@ router.get('/about', upload.saveViewData, (req, res) => {
 			let honorStr = companys && companys.length > 0 && companys[0].honor || '';
 			let honors = [];
 			if (honorStr.length > 0) {
-				honorStr.split("&&").forEach(function(item, index) {
+				honorStr.split("&&").forEach(function (item, index) {
 					let honorObj = {};
 					honorObj.name = item.split('=')[0];
 					honorObj.imgUrl = item.split('=')[1];
@@ -90,42 +90,68 @@ router.get('/contact', upload.saveViewData, (req, res) => {
 });
 
 
-router.get('/productList', upload.saveViewData, (req, res) => {
+router.get('/product', upload.saveViewData, (req, res) => {
 	try {
-		Product.find({}).exec((err, products) => {
-			res.render("product", {
-				products: products
+		ProductCategory.find({})
+			.exec((err, productCategorys) => {
+				Product.find({category: productCategorys.length > 0 && productCategorys[0]._id})
+					.exec((err, products) => {
+						res.render("product", {
+							products: products,
+							productCategorys: productCategorys
+						})
+					})
 			})
-		})
-	} catch (err) {
+	} catch
+		(err) {
+		console.log('err', err);
+	}
+});
+
+router.get('/product/category/:id', upload.saveViewData, (req, res) => {
+	try {
+		let productCategoryId = req.params.id;
+		if (productCategoryId) {
+			ProductCategory.findOne({_id: productCategoryId})
+				.populate('products', 'name imgUrl')
+				.exec((err, productCategory) => {
+					res.render("productCategoryDetail", {
+						productCategory: productCategory
+					})
+				})
+		}
+	} catch
+		(err) {
 		console.log('err', err);
 	}
 });
 
 
-router.get('/product/detail/:id', upload.saveViewData, (req, res) => {
+router.get('/product/detail', upload.saveViewData, (req, res) => {
 	try {
-		let productId = req.params.id;
+		let productId = req.query.productId;
 		if (productId) {
-			Product.findById(productId, (err, product) => {
-				res.render('productDetail', {
-					product: product
+			Product.findOne({_id: productId}).populate('category', 'name').exec((err, product) => {
+				Product.find({category: product.category}).limit(8).exec((err, relateProducts) => {
+					res.render('productDetail', {
+						product: product,
+						relateProducts: relateProducts
+					})
 				})
 			})
 		}
 	} catch (err) {
 		console.log('err', err);
 	}
-})
+});
 
-router.get('/projectList', upload.saveViewData, (req, res) => {
-	ProjectCategory.find({}).exec((err, projectCategorys) => {
-		// 需要将客户案例类型分类成三种，1-战略合作 2-BIM咨询公司 3-研究中心合作单位
+router.get('/project', upload.saveViewData, (req, res) => {
+	Project.find({}).exec((err, projects) => {
 		res.render("project", {
-			projectCategorys: projectCategorys
+			projects: projects
 		})
 	})
-})
+});
 
 
 router.get('/product/category/:id', upload.saveViewData, (req, res) => {
@@ -169,5 +195,14 @@ router.get('/news/:id', upload.saveViewData, (req, res) => {
 		console.log('err', err)
 	}
 });
+
+router.get('/service', upload.saveViewData, (req, res) => {
+	try {
+		res.render('service', {})
+	} catch (err) {
+		console.log('err', err)
+	}
+});
+
 
 module.exports = router;

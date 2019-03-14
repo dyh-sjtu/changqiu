@@ -351,6 +351,33 @@
 	z-index: 1;
 }
 
+.news-page-banner{
+	background-image: url("/img/news.jpg");
+	background-size: cover;
+	background-repeat: no-repeat;
+	position: relative;
+	padding: 100px 0;
+	z-index: 1;
+}
+
+.project-page-banner{
+	background-image: url("/img/content_img.png");
+	background-size: cover;
+	background-repeat: no-repeat;
+	position: relative;
+	padding: 100px 0;
+	z-index: 1;
+}
+
+.product-page-banner {
+	background-image: url("/img/banner_3.jpg");
+	background-size: cover;
+	background-repeat: no-repeat;
+	position: relative;
+	padding: 100px 0;
+	z-index: 1;
+}
+
 .page-banner::before {
 	background-color: rgba(0, 0, 0, 0.59);
 	content: "";

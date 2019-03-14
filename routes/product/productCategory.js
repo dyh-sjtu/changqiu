@@ -122,5 +122,20 @@ router.get('/index/product/category', (req, res) => {
 	}
 });
 
+router.get('/index/productCategory', (req, res) => {
+	try {
+		ProductCategory.find({}).exec((err, productCategorys) => {
+			return res.json({
+				success: 1,
+				data: {
+					productCategorys: productCategorys
+				}
+			})
+		});
+	} catch (err) {
+		console.log('err', err)
+	}
+});
+
 
 module.exports = router;

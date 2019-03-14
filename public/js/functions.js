@@ -61,80 +61,6 @@
 		}
 	}
 	
-	/* - Team Section */
-	function skillbar() {
-		$( " [id*='skill_type-'] " ).each(function () {
-			
-			var ele_id = 0;
-			ele_id = $(this).attr('id').split("-")[1];
-			
-			var $this = $(this);
-			var myVal = $(this).data("value");
-			
-			var skill_bar_count = 0;
-			var skills_bar_count = 0;
-			skill_bar_count = $( "[id*='skill_bar_"+ ele_id +"_count-']" ).length;
-			
-			for(var j=1; j<=skill_bar_count; j++)
-			{
-				skills_bar_count = $( "[id*='skill_"+ ele_id +"_count-"+j+"']" ).attr( "data-skill_percent" );
-				$("[id*='skill_bar_"+ ele_id +"_count-"+j+"']").css({'width': skills_bar_count +'%'});
-			}
-
-			var skill_type1_item_count = 0;
-			var skill_type1_count = 0;					
-			skill_type1_item_count = $( "[id*='skill_"+ ele_id +"_count-']" ).length;				
-			
-			for(var i=1; i<=skill_type1_item_count; i++)
-			{
-				skill_type1_count = $( "[id*='skill_"+ ele_id +"_count-"+i+"']" ).attr( "data-skill_percent" );
-				$("[id*='skill_"+ ele_id +"_count-"+i+"']").animateNumber({ number: skill_type1_count }, 5000);
-			}
-		});
-	}
-	
-	/* - Google Map* */
-	function initialize(obj) {
-		var lat = $("#"+obj).attr("data-lat");
-        var lng = $("#"+obj).attr("data-lng");
-		var contentString = $("#"+obj).attr("data-string");
-		var myLatlng = new google.maps.LatLng(lat,lng);
-		var map, marker, infowindow;
-		var image = "assets/img/marker.png";
-		var zoomLevel = parseInt($("#"+obj).attr("data-zoom") ,10);		
-		var styles = [{"featureType":"landscape","stylers":[{"saturation":" "},{"lightness":" "},{"visibility":"on"}]},{"featureType":"poi","stylers":[{"saturation":" "},{"lightness":" "},{"visibility":"simplified"}]},{"featureType":"road.highway","stylers":[{"saturation":" "},{"visibility":"simplified"}]},{"featureType":"road.arterial","stylers":[{"saturation":" "},{"lightness":" "},{"visibility":"on"}]},{"featureType":"road.local","stylers":[{"saturation":" "},{"lightness":" "},{"visibility":"on"}]},{"featureType":"transit","stylers":[{"saturation":" "},{"visibility":"simplified"}]},{"featureType":"administrative.province","stylers":[{"visibility":"off"}]},{"featureType":"water","elementType":"labels","stylers":[{"visibility":"on"},{"lightness":" "},{"saturation":" "}]},{"featureType":"water","elementType":"geometry","stylers":[{"hue":"#ffff00"},{"lightness":" "},{"saturation":" "}]}]
-		var styledMap = new google.maps.StyledMapType(styles,{name: "Styled Map"});	
-		
-		var mapOptions = {
-			zoom: zoomLevel,
-			disableDefaultUI: true,
-			center: myLatlng,
-            scrollwheel: false,
-			mapTypeControlOptions: {
-            mapTypeIds: [google.maps.MapTypeId.ROADMAP, "map_style"]
-			}
-		}
-		
-		map = new google.maps.Map(document.getElementById(obj), mapOptions);	
-		
-		map.mapTypes.set("map_style", styledMap);
-		map.setMapTypeId("map_style");
-		
-		infowindow = new google.maps.InfoWindow({
-			content: contentString
-		});      
-	    
-        marker = new google.maps.Marker({
-			position: myLatlng,
-			map: map,
-			icon: image
-		});
-
-		google.maps.event.addListener(marker, "click", function() {
-			infowindow.open(map,marker);
-		});	
-	}
-	
 	/* - Sticky Menu* */
 	function sticky_menu() {
 		var menu_scroll = $('header[class*="header_s"]').offset().top;
@@ -236,28 +162,6 @@
 			});
 		}
 		
-		/* - Counter Section */
-		// if($(".counter-section").length) {
-		// 	$(".counter-section").each(function ()
-		// 	{
-		// 		var $this = $(this);
-		// 		var myVal = $(this).data("value");
-		//
-		// 		$this.appear(function()
-		// 		{
-		// 			var statistics_item_count = 0;
-		// 			var statistics_count = 0;
-		// 			statistics_item_count = $( "[id*='statistics_count-']" ).length;
-		//
-		// 			for(var i=1; i<=statistics_item_count; i++)
-		// 			{
-		// 				statistics_count = $( "[id*='statistics_count-"+i+"']" ).attr( "data-statistics_percent" );
-		// 				$("[id*='statistics_count-"+i+"']").animateNumber({ number: statistics_count }, 4000);
-		// 			}
-		// 		});
-		// 	});
-		// }
-		
 		/* - Client Carousel */
 		if( $(".clients-carousel").length ) {
 			$(".clients-carousel").owlCarousel({
@@ -323,17 +227,6 @@
 			});
 		}
 		
-		/* - Video Section */
-		if($(".blog-section").length ){
-			$(".type-post .popup-youtube").magnificPopup({
-				disableOn: 700,
-				type: "iframe",
-				mainClass: "mfp-fade",
-				removalDelay: 160,
-				preloader: false,
-				fixedContentPos: false
-			});
-		}
 		
 		/* - Gallery Section */		
 		if( $(".products").length ){
@@ -481,11 +374,7 @@
 				return false;
 			});
 		}
-
-		/* - Team Section */
-		if( $(".team-section").length ) {
-			skillbar();
-		}
+		
 
 	});
 

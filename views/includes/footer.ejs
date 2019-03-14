@@ -103,8 +103,10 @@
 			if (res.success === 1) {
 				var companyInfo = res.data.companyInfo;
 				var ele = $('.company-info');
+				var headerEle = $('.header-company-info');
 				if (companyInfo && companyInfo.tel) {
 					ele.append("<p><i class='icon icon-Phone2'></i><span>咨询热线: </span><a href='tel:" + companyInfo.tel + "' title='" + companyInfo.tel + "'>" + companyInfo.tel + "</a></p>")
+					headerEle.append("<p><i class='icon icon-Phone2'></i><a href='tel:" + companyInfo.tel + "' title='" + companyInfo.tel + "'>" + companyInfo.tel + "</a></p>");
 				}
 				if (companyInfo && companyInfo.phoneNumber) {
 					ele.append("<p><i class='icon icon-Phone'></i><span>销售热线: </span><a href='tel:" + companyInfo.phoneNumber + "' title='" + companyInfo.phoneNumber + "'>" + companyInfo.phoneNumber + "</a></p>")
@@ -112,13 +114,34 @@
 				}
 				if (companyInfo && companyInfo.email) {
 					ele.append("<p><i class='icon icon-Mail'></i><span>联系邮箱: </span><a href='mailto:" + companyInfo.email + "' title='" + companyInfo.email + "'>" + companyInfo.email + "</a></p>")
-
+					headerEle.append("<p><i class='icon icon-Mail'></i><a href='mailto:" + companyInfo.email + "' title='" + companyInfo.email + "'>" + companyInfo.email + "</a></p>");
 				}
 				if (companyInfo && companyInfo.address) {
 					ele.append("<p><i class='icon icon-House'></i><span>公司地址: </span>" + companyInfo.address + "</p>")
 				}
 				ele.append("<p><i class='icon icon-Time'></i><span>服务时间: </span> 00:00 - 24:00 </p>")
+				headerEle.append("<p><i class='icon icon-Time'></i><a href='javascript:;'>00:00 - 24:00</a></p>");
+
 			}
 		})
+
+		// 获取所有产品种类
+		$.ajax({
+			type: 'GET',
+			url: '/index/productCategory'
+		}).done(function (res) {
+			if (res.success === 1) {
+				var productCategorys = res.data.productCategorys;
+				var product_category_menu = $('.product-category-menu');
+				var menu_htmlStr = '';
+				productCategorys.forEach(function (productCategory, index) {
+					menu_htmlStr += "<li><a href='/product/category/" + productCategory._id + "'>" + productCategory.name + "</a></li>"
+				})
+				product_category_menu.html(menu_htmlStr);
+
+			}
+		})
+
+
 	})
 </script>

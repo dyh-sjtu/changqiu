@@ -1,0 +1,46 @@
+<main>
+    <!-- Page Banner -->
+    <div class="product-page-banner page-banner container-fluid">
+        <!-- Container -->
+        <div class="container">
+            <div class="banner-content">
+                <h3><%= productCategory.name %></h3>
+                <ol class="breadcrumb">
+                    <li><a href="/index" title="首页">首页</a></li>
+                    <li><a href="/product" title="产品展示">产品展示</a></li>
+                    <li class="active"><%= productCategory.name %></li>
+                </ol>
+            </div>
+        </div><!-- Container /- -->
+    </div><!-- Page Banner /- -->
+
+    <!--产品展示-->
+    <div class="gallery-section gallery-section2 container-fluid no-left-padding no-right-padding">
+        <!-- Container -->
+        <div class="container">
+            <!-- Section Header -->
+            <div class="section-header">
+                <h3><%= productCategory.name %></h3>
+                <img src="/img/seprator.png" alt="seprator"/>
+            </div><!-- Section Header /- -->
+            <div class="row">
+                <ul class="portfolio-list no-left-padding changqiu-products">
+                    <% productCategory && productCategory.products.length > 0 && productCategory.products.forEach(function (product, index) { %>
+                    <li class="col-md-3 col-sm-6 col-xs-6">
+                        <div class="content-image-block">
+                            <img src="<%= product.imgUrl %>">
+                            <div class="content-block-hover">
+                                <a class="zoom-in" href="<%= product.imgUrl %>"><i
+                                            class="icon icon-Search"></i></a>
+                                <a href="/product/detail?productId=<%= product._id %>" title="Link"><i class="icon icon-Linked"></i></a>
+                                <h5><%= product.name %></h5>
+                            </div>
+                        </div>
+                    </li>
+                    <% }) %>
+                </ul>
+            </div>
+        </div><!-- Container /- -->
+    </div>
+    <!--产品展示结束 /-->
+</main>

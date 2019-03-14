@@ -1,0 +1,87 @@
+<main>
+    <!-- Page Banner -->
+    <div class="product-page-banner page-banner container-fluid">
+        <!-- Container -->
+        <div class="container">
+            <div class="banner-content">
+                <h3><%= product.name %></h3>
+                <ol class="breadcrumb">
+                    <li><a href="/index" title="首页">首页</a></li>
+                    <li><a href="/product" title="产品展示">产品展示</a></li>
+                    <li><a href="/product/category/<%= product.category %>"
+                           title="<%= product.category.name %>"><%= product.category.name %></a></li>
+                    <li class="active"><%= product.name %></li>
+                </ol>
+            </div>
+        </div><!-- Container /- -->
+    </div><!-- Page Banner /- -->
+
+    <!--产品详情-->
+    <div class="shop-single container-fluid no-left-padding no-right-padding">
+        <!-- Container -->
+        <div class="container">
+            <div class="product-views">
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <img src="<%= product.imgUrl %>" alt="<%= product.name %>"/>
+                </div>
+                <!-- Entry Summary -->
+                <div class="col-md-6 col-sm-6 col-xs-12 entry-summary">
+                    <h3 class="product_title"><%= product.name %></h3>
+                    <% if(product.desc && product.desc.length > 0) { %>
+                    <div class="entry-summary-content">
+                        <p class="suojin text-over-line"><%= product.desc.split("||")[0] %></p>
+                    </div>
+                    <% } %>
+                    <div class="product-attribute">
+                        <span class="category">产品类别: <%= product.smallCategory %></span>
+                    </div>
+                </div><!-- Entry Summary /- -->
+            </div>
+
+            <!-- Reviews Tab -->
+            <div class="col-md-12 col-sm-12 col-xs-12 wc-tabs-wrapper">
+                <!-- Nav tabs -->
+                <ul class="nav nav-tabs wc-tabs" role="tablist">
+                    <li role="presentation" class="active"><a href="#tab-description" role="tab" data-toggle="tab">Description</a>
+                    </li>
+                </ul>
+                <!-- Tab panes -->
+                <div class="tab-content">
+                    <div role="tabpanel" class="tab-pane active" id="tab-description">
+                        <h5>产品介绍</h5>
+                        <% product.desc && product.desc.length > 0 && product.desc.split("||").forEach(function (item, index) { %>
+                        <p class="suojin"><%= item %></p>
+                        <% })%>
+                    </div>
+                </div>
+            </div><!-- Reviews Tab /- -->
+
+            <!-- Product Section -->
+            <div class="product-section">
+                <div class="section-heading">
+                    <h5>相关产品</h5>
+                </div>
+                <!-- Products -->
+                <ul class="products">
+                    <!-- Product -->
+                    <% relateProducts.forEach(function (relateProduct, index) { %>
+                    <li class="product">
+                        <a href="/product/detail?productId=<%= relateProduct._id %>">
+                            <img src="<%= relateProduct.imgUrl %>" alt="<%= relateProduct.name %>"/>
+                            <div class="product-content">
+                                <h5><%= relateProduct.name %></h5>
+                                <span class="price"><%= relateProduct.smallCategory %></span>
+                            </div>
+                        </a>
+                        <a href="<%= relateProduct.imgUrl %>" class="zoom-in" title="<%= relateProduct.name %>">
+                            <i class="icon icon-Eye"></i></a>
+                    </li>
+                    <% })%>
+                    <!-- Product -->
+                </ul><!-- Products /- -->
+            </div><!-- Product Section /- -->
+        </div><!-- Container /- -->
+    </div><!-- Shop Single /- -->
+    <!--产品详情-->
+
+</main>

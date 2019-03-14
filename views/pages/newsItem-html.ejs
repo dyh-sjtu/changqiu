@@ -1,0 +1,48 @@
+<main>
+    <!-- Page Banner -->
+    <div class="news-page-banner page-banner container-fluid">
+        <!-- Container -->
+        <div class="container">
+            <div class="banner-content">
+                <h3>新闻资讯</h3>
+                <ol class="breadcrumb">
+                    <li><a href="/index" title="首页">首页</a></li>
+                    <li class="active">新闻资讯</li>
+                </ol>
+            </div>
+        </div><!-- Container /- -->
+    </div><!-- Page Banner /- -->
+
+    <!-- Blog Section -->
+    <div class="blog-section container-fluid no-left-padding no-right-padding">
+        <!-- Container -->
+        <div class="container">
+            <!-- Content Area -->
+            <div class="content-area col-md-12 col-sm-24 col-xs-24">
+                <h3 class="entry-title tc">
+                    <%= newsItem.title %>
+                </h3>
+                <div class="w100 tc">
+                    <div class="post-date" style="padding-right: 0">
+                        <a style="text-decoration: none" href="javascript:;" title="日期">
+                            <i class="icon icon-Agenda mr-10"></i>
+                            <%= moment(newsItem.time).format("YYYY-MM-DD") %>
+                        </a>
+                    </div>
+                </div>
+                <div class="entry-content tc mb-30">
+                    <div class="suojin mb-20" style="word-wrap: break-word"><%- newsItem.content %></div>
+                </div>
+                <nav class="ow-pagination text-center">
+                    <ul class="pagination">
+                        <li><a href="#">上一篇</a></li>
+                        <li><a href="#">下一篇</a></li>
+                    </ul>
+                </nav>
+            </div>
+            <!-- Content Area /- -->
+        </div>
+        <!-- Container /- -->
+    </div>
+    <!-- Blog Section /- -->
+</main>
