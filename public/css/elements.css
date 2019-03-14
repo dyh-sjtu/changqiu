@@ -334,7 +334,7 @@
 
 /* + Page Banner */
 .aboutUs-page-banner{
-	background-image: url("/img/about_us.jpg");
+	background-image: url("https://changqiu.oss-cn-zhangjiakou.aliyuncs.com/img/about_us.jpg");
 	background-size: cover;
 	background-repeat: no-repeat;
 	position: relative;
@@ -343,7 +343,7 @@
 }
 
 .contactUs-page-banner{
-	background-image: url("/img/contact.jpg");
+	background-image: url("https://changqiu.oss-cn-zhangjiakou.aliyuncs.com/img/contact.jpg");
 	background-size: cover;
 	background-repeat: no-repeat;
 	position: relative;
@@ -352,7 +352,7 @@
 }
 
 .news-page-banner{
-	background-image: url("/img/news.jpg");
+	background-image: url("https://changqiu.oss-cn-zhangjiakou.aliyuncs.com/img/news.jpg");
 	background-size: cover;
 	background-repeat: no-repeat;
 	position: relative;
@@ -361,7 +361,7 @@
 }
 
 .project-page-banner{
-	background-image: url("/img/content_img.png");
+	background-image: url("https://changqiu.oss-cn-zhangjiakou.aliyuncs.com/img/content_img.png");
 	background-size: cover;
 	background-repeat: no-repeat;
 	position: relative;
@@ -370,7 +370,7 @@
 }
 
 .product-page-banner {
-	background-image: url("/img/banner_3.jpg");
+	background-image: url("https://changqiu.oss-cn-zhangjiakou.aliyuncs.com/img/slider/banner_3.jpg");
 	background-size: cover;
 	background-repeat: no-repeat;
 	position: relative;
@@ -1430,7 +1430,7 @@
 .counter-section {
 	border-top: 1px solid rgba(0,0,0,.1);
 	border-bottom: 1px solid rgba(0,0,0,.1);
-	background-image: url("/img/service.jpg");
+	background-image: url("https://changqiu.oss-cn-zhangjiakou.aliyuncs.com/img/service.jpg");
 	background-repeat: no-repeat;
 	background-size: contain;
 	position: relative;
@@ -2109,7 +2109,7 @@
 
 /* - Call Out */
 .call-out {
-	background-image: url("/img/investment.jpg");
+	background-image: url("https://changqiu.oss-cn-zhangjiakou.aliyuncs.com/img/investment.jpg");
 	background-repeat: no-repeat;
 	background-size: cover;
 	position: relative;
