@@ -9,7 +9,9 @@
                     <li><a href="/index" title="首页">首页</a></li>
                     <li><a href="/product" title="产品展示">产品展示</a></li>
                     <li><a href="/product/category/<%= product.category %>"
-                           title="<%= product.category.name %>"><%= product.category.name %></a></li>
+                           title="<%= product.category.name %>"><%= product.category.name %>
+                        </a>
+                    </li>
                     <li class="active"><%= product.name %></li>
                 </ol>
             </div>
@@ -42,8 +44,8 @@
             <div class="col-md-12 col-sm-12 col-xs-12 wc-tabs-wrapper">
                 <!-- Nav tabs -->
                 <ul class="nav nav-tabs wc-tabs" role="tablist">
-                    <li role="presentation" class="active"><a href="#tab-description" role="tab" data-toggle="tab">Description</a>
-                    </li>
+                    <li role="presentation" class="active"><a href="#tab-description" role="tab" data-toggle="tab">产品描述</a></li>
+                    <li role="presentation"><a href="#tab-reviews" class="tab-review" role="tab" data-toggle="tab">技术特征</a></li>
                 </ul>
                 <!-- Tab panes -->
                 <div class="tab-content">
@@ -52,6 +54,25 @@
                         <% product.desc && product.desc.length > 0 && product.desc.split("||").forEach(function (item, index) { %>
                         <p class="suojin"><%= item %></p>
                         <% })%>
+                    </div>
+                    <div role="tabpanel" class="tab-pane" id="tab-reviews">
+                        <h5>技术特征</h5>
+                        <% if (product.character && product.character.length > 0) { %>
+                        <div class="row">
+                            <div class="col-md-12 col-sm-24 col-xs-24 mt-20">
+                                <table class="table table-bordered">
+                                    <tbody>
+                                    <% product.character.split("&&").forEach(function (item, index) { %>
+                                    <tr>
+                                        <th><%= item.split("=")[0] %></th>
+                                        <td class="weintern-gray-normal" style="vertical-align: middle"><%= item.split("=")[1] %></td>
+                                    </tr>
+                                    <% }) %>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <% } %>
                     </div>
                 </div>
             </div><!-- Reviews Tab /- -->
@@ -65,7 +86,7 @@
                 <ul class="products">
                     <!-- Product -->
                     <% relateProducts.forEach(function (relateProduct, index) { %>
-                    <li class="product">
+                    <li class="product" style="max-height: 400px">
                         <a href="/product/detail?productId=<%= relateProduct._id %>">
                             <img src="<%= relateProduct.imgUrl %>" alt="<%= relateProduct.name %>"/>
                             <div class="product-content">
@@ -73,7 +94,7 @@
                                 <span class="price"><%= relateProduct.smallCategory %></span>
                             </div>
                         </a>
-                        <a href="<%= relateProduct.imgUrl %>" class="zoom-in" title="<%= relateProduct.name %>">
+                        <a href="<%= relateProduct.imgUrl %>" class="zoom-in pl-15" style="padding-top: 12px" title="<%= relateProduct.name %>">
                             <i class="icon icon-Eye"></i></a>
                     </li>
                     <% })%>
