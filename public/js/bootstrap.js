@@ -194,30 +194,6 @@
 		return Util;
 	}($);
 	
-	/**
-	 * --------------------------------------------------------------------------
-	 * Bootstrap (v4.0.0): alert.js
-	 * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
-	 * --------------------------------------------------------------------------
-	 */
-	
-	
-	
-	/**
-	 * --------------------------------------------------------------------------
-	 * Bootstrap (v4.0.0): button.js
-	 * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
-	 * --------------------------------------------------------------------------
-	 */
-	
-	
-	
-	/**
-	 * --------------------------------------------------------------------------
-	 * Bootstrap (v4.0.0): carousel.js
-	 * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
-	 * --------------------------------------------------------------------------
-	 */
 	
 	var Carousel = function ($$$1) {
 		/**
@@ -735,17 +711,8 @@
 		}
 	})($);
 	
-	// exports.Util = Util;
-	// exports.Alert = Alert;
-	// exports.Button = Button;
+	exports.Util = Util;
 	exports.Carousel = Carousel;
-	exports.Collapse = Collapse;
-	exports.Dropdown = Dropdown;
-	exports.Modal = Modal;
-	exports.Popover = Popover;
-	exports.Scrollspy = ScrollSpy;
-	exports.Tab = Tab;
-	exports.Tooltip = Tooltip;
 	
 	Object.defineProperty(exports, '__esModule', {value: true});
 	
