@@ -129,39 +129,6 @@
 		menu_dropdown_open();
 		panel_resize();
 		
-		/* - Rev Slider */
-		if($(".slider-section").length){
-			$("#home-slider1").revolution({
-				sliderType:"standard",
-				sliderLayout:"auto",
-				delay:6000,
-				navigation: {
-					arrows:{
-						enable:true,
-						style:"uranus"
-					}
-				},
-				responsiveLevels:[1920,1024,768,480],
-				gridwidth:[1920,1024,768,480],
-				gridheight:[705,675,580,480],
-			});
-
-			$("#home-slider2").revolution({
-				sliderType:"standard",
-				sliderLayout:"auto",
-				delay:6000,
-				navigation: {
-					arrows:{
-						enable:true,
-						style:"uranus"
-					}
-				},
-				responsiveLevels:[1920,1024,768,480],
-				gridwidth:[1920,1024,768,480],
-				gridheight:[708,775,680,480],
-			});
-		}
-		
 		/* - Client Carousel */
 		if( $(".clients-carousel").length ) {
 			$(".clients-carousel").owlCarousel({

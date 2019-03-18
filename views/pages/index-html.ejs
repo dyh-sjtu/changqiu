@@ -1,40 +1,57 @@
 <main>
     <!-- Slider Section 2 -->
-    <div id="home-revslider" class="slider-section slider-section2 container-fluid no-padding">
-        <!-- START REVOLUTION SLIDER 5.0 -->
-        <div class="rev_slider_wrapper">
-            <div id="home-slider2" class="rev_slider" data-version="5.3">
-                <ul>
-                    <% sliders && sliders.length > 0 && sliders.forEach(function (slider, index) { %>
-                    <li data-transition="zoomout" data-slotamount="default" data-easein="easeInOut"
-                        data-easeout="easeInOut" data-masterspeed="2000" data-rotate="0" data-fstransition="fade"
-                        data-fsmasterspeed="1500" data-fsslotamount="7">
-                        <img src="<%= slider.src %>" alt="slider" data-bgposition="center center" data-bgfit="cover"
-                             data-bgrepeat="no-repeat" data-bgparallax="10" class="rev-slidebg" data-no-retina>
-                        <div class="tp-caption tp-shape tp-shapewrapper" id="slide-layer-0"
-                             data-x="['center','center','center','center']"
-                             data-y="['middle','middle','middle','middle']"
-                             data-basealign="slide"
-                             data-height="full"
-                             data-hoffset="['0','0','0','0']"
-                             data-responsive="off"
-                             data-responsive_offset="off"
-                             data-start="0"
-                             data-transform_idle="o:1;"
-                             data-transform_in="opacity:0;s:2000;e:Power2.easeInOut;"
-                             data-transform_out="opacity:0;s:500;s:500;"
-                             data-voffset="['0','0','0','0']"
-                             data-whitespace="nowrap"
-                             data-width="full"
-                             style="z-index: 5;background-color:rgba(0, 0, 0, 0.6);">
-                        </div>
-                    </li>
-                    <% }) %>
-                </ul>
-            </div>
-        </div><!-- END OF SLIDER WRAPPER -->
-    </div>
+    <!--<div id="home-revslider" class="slider-section slider-section2 container-fluid no-padding">-->
+        <!--&lt;!&ndash; START REVOLUTION SLIDER 5.0 &ndash;&gt;-->
+        <!--<div class="rev_slider_wrapper">-->
+            <!--<div id="home-slider2" class="tp-simpleresponsive" data-version="5.3">-->
+                <!--<ul>-->
+                    <!--<% sliders && sliders.length > 0 && sliders.forEach(function (slider, index) { %>-->
+                    <!--<li data-transition="zoomout" data-slotamount="default" data-easein="easeInOut"-->
+                        <!--data-easeout="easeInOut" data-masterspeed="2000" data-rotate="0" data-fstransition="fade"-->
+                        <!--data-fsmasterspeed="1500" data-fsslotamount="7">-->
+                        <!--<img src="<%= slider.src %>" alt="<%= slider.title %>" data-bgposition="center center" data-bgfit="cover"-->
+                             <!--data-bgrepeat="no-repeat" data-bgparallax="10" class="rev-slidebg">-->
+                    <!--</li>-->
+                    <!--<% }) %>-->
+                <!--</ul>-->
+            <!--</div>-->
+        <!--</div>&lt;!&ndash; END OF SLIDER WRAPPER &ndash;&gt;-->
+    <!--</div>-->
     <!-- Slider Section 2 /- -->
+
+    <div id="changqiu-carouselExampleIndicators" class="changqiu-carousel changqiu-slide" data-ride="changqiu-carousel">
+        <ol class="changqiu-carousel-indicators">
+            <% sliders && sliders.length > 0 && sliders.forEach(function (slider, index) { %>
+            <% if (index === 0) { %>
+            <li data-target="#changqiu-carouselExampleIndicators" data-slide-changqiu="<%= index %>" class="changqiu-active"></li>
+            <% } else { %>
+            <li data-target="#changqiu-carouselExampleIndicators" data-slide-changqiu="<%= index %>"></li>
+            <% } %>
+            <% }) %>
+        </ol>
+        <div class="changqiu-carousel-inner">
+            <% sliders.forEach(function (slider, index) { %>
+            <% if (index === 0) { %>
+            <div class="changqiu-carousel-item changqiu-active">
+                <img class="d-block w-100" src="<%= slider.src %>" alt="<%= slider.title %>">
+            </div>
+            <% } %>
+            <% if (index !== 0) { %>
+            <div class="changqiu-carousel-item">
+                <img class="d-block w-100" src="<%= slider.src %>" alt="<%= slider.title %>">
+            </div>
+            <% } %>
+            <% }) %>
+        </div>
+        <a class="changqiu-carousel-control-prev" href="#changqiu-carouselExampleIndicators" role="button" data-slide-changqiu="prev">
+            <span class="changqiu-carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="changqiu-carousel-control-next" href="#changqiu-carouselExampleIndicators" role="button" data-slide-changqiu="next">
+            <span class="changqiu-carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
 
     <!--产品展示-->
     <div class="gallery-section gallery-section2 container-fluid no-left-padding no-right-padding">
