@@ -260,7 +260,7 @@
 			ITEM: '.changqiu-carousel-item',
 			NEXT_PREV: '.changqiu-carousel-item-next, .changqiu-carousel-item-prev',
 			INDICATORS: '.changqiu-carousel-indicators',
-			DATA_SLIDE: '[data-slide-changqiu]',
+			DATA_SLIDE: '[data-slide], [data-slide-changqiu]',
 			DATA_RIDE: '[data-ride="changqiu-carousel"]'
 			/**
 			 * ------------------------------------------------------------------------
