@@ -260,7 +260,7 @@
 			ITEM: '.changqiu-carousel-item',
 			NEXT_PREV: '.changqiu-carousel-item-next, .changqiu-carousel-item-prev',
 			INDICATORS: '.changqiu-carousel-indicators',
-			DATA_SLIDE: '[data-slide-changqiu], [data-slide-changqiuIndex]',
+			DATA_SLIDE: '[data-slide-changqiu]',
 			DATA_RIDE: '[data-ride="changqiu-carousel"]'
 			/**
 			 * ------------------------------------------------------------------------
@@ -627,7 +627,7 @@
 					}
 					
 					var config = _extends({}, $$$1(target).data(), $$$1(this).data());
-					var slideIndex = this.getAttribute('data-slide');
+					var slideIndex = this.getAttribute('data-slide-changqiu');
 					
 					if (slideIndex) {
 						config.interval = false;
