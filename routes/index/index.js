@@ -18,12 +18,15 @@ router.get('/', upload.saveViewData, (req, res) => {
 					Product.find({category: productCategorys.length > 0 && productCategorys[0]._id}).exec((err, products) => {
 						Project.find({}).limit(6)
 							.exec((err, projects) => {
-								res.render("index", {
-									news: news,
-									sliders: sliders,
-									projects: projects,
-									products: products,
-									productCategorys: productCategorys
+								Company.fetch((err, companys) => {
+									res.render("index", {
+										news: news,
+										sliders: sliders,
+										projects: projects,
+										products: products,
+										productCategorys: productCategorys,
+										company: companys[0]
+									})
 								})
 							})
 					})
@@ -40,12 +43,15 @@ router.get('/index', upload.saveViewData, (req, res) => {
 					Product.find({category: productCategorys.length > 0 && productCategorys[0]._id}).exec((err, products) => {
 						Project.find({}).limit(6)
 							.exec((err, projects) => {
-								res.render("index", {
-									news: news,
-									sliders: sliders,
-									projects: projects,
-									products: products,
-									productCategorys: productCategorys
+								Company.fetch((err, companys) => {
+									res.render("index", {
+										news: news,
+										sliders: sliders,
+										projects: projects,
+										products: products,
+										productCategorys: productCategorys,
+										company: companys[0]
+									})
 								})
 							})
 					})
