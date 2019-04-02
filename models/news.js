@@ -30,7 +30,7 @@ NewsSchema.statics = {
 	fetch: function (cb) {
 		return this
 			.find({})
-			.sort({'meta.updateAt':-1})
+			.sort({'meta.createAt':-1})
 			.exec(cb)
 	},
 	findById: function (id, cb) {

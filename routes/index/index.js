@@ -139,9 +139,12 @@ router.get('/product/detail', upload.saveViewData, (req, res) => {
 		if (productId) {
 			Product.findOne({_id: productId}).populate('category', 'name').exec((err, product) => {
 				Product.find({category: product.category}).limit(8).exec((err, relateProducts) => {
+					let noRepeatRelateProducts = relateProducts.filter(function (_product, index) {
+						return _product._id.toString() !== productId.toString();
+					});
 					res.render('productDetail', {
 						product: product,
-						relateProducts: relateProducts
+						relateProducts: noRepeatRelateProducts
 					})
 				})
 			})
@@ -152,11 +155,22 @@ router.get('/product/detail', upload.saveViewData, (req, res) => {
 });
 
 router.get('/project', upload.saveViewData, (req, res) => {
-	Project.find({}).exec((err, projects) => {
-		res.render("project", {
-			projects: projects
+	try {
+		let pageIndex = parseInt(Object.keys(req.query).length > 0 && req.query.pageIndex) || 0;
+		let pageSize = 16;
+		Project.find({}).sort({'meta.createAt': -1}).limit(pageSize).skip(pageIndex * pageSize).exec((err, projects) => {
+			Project.count().exec((err, projectsNum) => {
+				res.render("project", {
+					projects: projects,
+					pageSize: pageSize,
+					pageIndex: pageIndex,
+					totalPage: Math.ceil(projectsNum/pageSize)
+				})
+			})
 		})
-	})
+	}catch (err) {
+		console.log('err', err)
+	}
 });
 
 
@@ -179,9 +193,16 @@ router.get('/product/category/:id', upload.saveViewData, (req, res) => {
 
 router.get('/news', upload.saveViewData, (req, res) => {
 	try {
-		News.fetch((err, news) => {
-			res.render('news', {
-				news: news
+		let pageIndex = parseInt(Object.keys(req.query).length > 0 && req.query.pageIndex) || 0;
+		let pageSize = 5;
+		News.find({}).sort({'meta.createAt': -1}).limit(pageSize).skip(pageIndex * pageSize).exec((err, news) => {
+			News.count().exec((err, newsNum) => {
+				res.render("news", {
+					news: news,
+					pageSize: pageSize,
+					pageIndex: pageIndex,
+					totalPage: Math.ceil(newsNum/pageSize)
+				})
 			})
 		})
 	} catch (err) {
@@ -189,18 +210,56 @@ router.get('/news', upload.saveViewData, (req, res) => {
 	}
 });
 
-router.get('/news/:id', upload.saveViewData, (req, res) => {
+router.get('/newsDetail', upload.saveViewData, (req, res) => {
 	try {
-		let newsId = req.params.id;
-		News.findById(newsId, (err, newsItem) => {
-			res.render('newsItem', {
-				newsItem: newsItem
+		let newsId = req.query.newsId;
+		let status = req.query.status;
+		if (status == 'pre') {
+			News.find({'_id': {'$gt': newsId}}).sort({'_id': 1}).limit(1).exec((err, currentItem) => {
+				let newsItem = currentItem[0];
+				News.find({'_id': {'$gt': newsItem._id}}).sort({'_id': 1}).limit(1).exec((err, preItem) => {
+					News.find({'_id': {'$lt': newsItem._id}}).sort({'_id': -1}).limit(1).exec((err, nextItem) => {
+						res.render('newsItem', {
+							newsItem: newsItem,
+							ifNextExist: nextItem.length > 0,
+							ifPreExist: preItem.length > 0
+						})
+					})
+				})
 			})
-		})
-	} catch (err) {
+		} else if (status == 'next') {
+			News.find({'_id': {'$lt': newsId}}).sort({'_id': -1}).limit(1).exec((err, currentItem) => {
+				let newsItem = currentItem[0];
+				News.find({'_id': {'$gt': newsItem._id}}).sort({'_id': 1}).limit(1).exec((err, preItem) => {
+					News.find({'_id': {'$lt': newsItem._id}}).sort({'_id': -1}).limit(1).exec((err, nextItem) => {
+						res.render('newsItem', {
+							newsItem: newsItem,
+							ifNextExist: nextItem.length > 0,
+							ifPreExist: preItem.length > 0
+						})
+					})
+				})
+			})
+		} else {
+			News.findById(newsId, (err, newsItem) => {
+				News.find({'_id': {'$gt': newsId}}).sort({'_id': 1}).limit(1).exec((err, preItem) => {
+					News.find({'_id': {'$lt': newsId}}).sort({'_id': -1}).limit(1).exec((err, nextItem) => {
+						res.render('newsItem', {
+							newsItem: newsItem,
+							ifNextExist: nextItem.length > 0,
+							ifPreExist: preItem.length > 0
+						})
+					})
+				})
+			})
+		}
+	} catch
+		(err) {
 		console.log('err', err)
 	}
-});
+})
+;
+
 
 router.get('/service', upload.saveViewData, (req, res) => {
 	try {

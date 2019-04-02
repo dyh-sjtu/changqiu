@@ -1437,60 +1437,6 @@
 	padding: 100px 0;
 }
 
-/*.counter-section::before {*/
-	/*content: "";*/
-	/*display: inline-block;*/
-	/*left: 0;*/
-	/*right: 0;*/
-	/*top: 0;*/
-	/*bottom: 0;*/
-	/*position: absolute;*/
-	/*background-color: rgb(24, 111, 190);*/
-	/*opacity: 0.89;*/
-/*}*/
-
-/*.counter-section .counter-box {*/
-	/*position: relative;*/
-	/*padding-left: 100px;*/
-/*}*/
-
-/*.counter-section .counter-box i {*/
-	/*color: #fff;*/
-	/*position: absolute;*/
-	/*left: 0;*/
-	/*top: 10px;*/
-	/*font-size: 60px;*/
-/*}*/
-
-/*.counter-section .counter-box span {*/
-	/*color: #fff;*/
-	/*display: inline-block;*/
-	/*font-weight: 700;*/
-	/*font-size: 36px;*/
-	/*letter-spacing: 1.44px;*/
-	/*line-height: 28px;*/
-	/*margin-bottom: 15px;*/
-	/*position: relative;*/
-	/*padding-bottom: 20px;*/
-/*}*/
-
-/*.counter-section .counter-box span::before {*/
-	/*background-color: #ffb300;*/
-	/*content: "";*/
-	/*position: absolute;*/
-	/*left: 0;*/
-	/*bottom: 0;*/
-	/*height: 3px;*/
-	/*width: 49px;*/
-/*}*/
-
-/*.counter-section .counter-box p {*/
-	/*color: #fff;*/
-	/*letter-spacing: 0.72px;*/
-	/*margin-bottom: 0;*/
-	/*text-transform: uppercase;*/
-/*}*/
-
 /* - Blog Section */
 .blog-section {
 	padding-top: 65px;
@@ -1500,6 +1446,7 @@
 .type-post {
 	display: inline-block;
 	margin-bottom: 100px;
+	padding: 0 15px;
 	width: 100%;
 	position: relative;
 }
@@ -1574,9 +1521,7 @@
 .type-post .entry-content p {
 	color: #888;
 	font-size: 13px;
-	line-height: 24px;
 	letter-spacing: 0.52px;
-	margin-bottom: 25px;
 }
 
 .type-post .entry-content a {
@@ -1683,7 +1628,7 @@
 }
 
 .latest-blog .type-post .entry-content p {
-	margin-bottom: 15px;
+	margin-bottom: 0;
 }
 
 .latest-blog .type-post .entry-content a:hover {
@@ -1691,7 +1636,7 @@
 }
 
 .post-right .type-post {
-	margin-bottom: 25px;
+	margin-bottom: 0;
 	position: relative;
 	padding-left: 200px;
 }
@@ -2379,21 +2324,6 @@
 	line-height: 24px;
 }
 
-.we-are-img {
-	position: relative;
-}
-
-.we-are-img::before {
-	background-color: rgba(24, 111, 190, 0.8);
-	bottom: 0;
-	content: "";
-	display: inline-block;
-	left: 0;
-	position: absolute;
-	right: 0;
-	top: 0;
-	transition: all 1s ease 0s;
-}
 
 .we-are-form {
 	position: absolute;

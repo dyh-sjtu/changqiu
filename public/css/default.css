@@ -1189,8 +1189,8 @@
 }
 
 .text-over-line {
-	height: 100px;
-	line-height: 25px;
+	height: 96px;
+	line-height: 24px;
 	overflow: hidden;
 	text-overflow: ellipsis;
 	display: -webkit-box;
@@ -1199,8 +1199,8 @@
 }
 
 .news-text-over-line {
-	height: 75px;
-	line-height: 25px;
+	height: 72px;
+	line-height: 24px;
 	overflow: hidden;
 	text-overflow: ellipsis;
 	display: -webkit-box;

@@ -21,7 +21,7 @@
                 <!-- Section Header -->
                 <div class="section-header">
                     <h3>工程案例</h3>
-                    <img src="https://changqiu.oss-cn-zhangjiakou.aliyuncs.com/img/seprator.png" alt="seprator" />
+                    <img src="https://changqiu.oss-cn-zhangjiakou.aliyuncs.com/img/seprator.png" alt="seprator"/>
                 </div><!-- Section Header /- -->
                 <!-- Products -->
                 <ul class="products">
@@ -29,12 +29,14 @@
                     <% projects && projects.length > 0 && projects.forEach(function (project, index) { %>
                     <li class="product" style="max-height: 400px">
                         <a href="javascript:;">
-                            <img src="<%= project.imgUrl %>" style="height: 250px;width:100%" alt="<%= project.title %>" />
+                            <img src="<%= project.imgUrl %>" style="height: 250px;width:100%"
+                                 alt="<%= project.title %>"/>
                             <div class="product-content">
                                 <h5><%= project.title %></h5>
                             </div>
                         </a>
-                        <a href="<%= project.imgUrl %>" class="zoom-in tc" style="padding-top: 13px" title="<%= project.title %>">
+                        <a href="<%= project.imgUrl %>" class="zoom-in tc" style="padding-top: 13px"
+                           title="<%= project.title %>">
                             <i class="icon icon-Eye"></i>
                         </a>
                     </li>
@@ -42,6 +44,32 @@
                     <!-- Product /- -->
                 </ul>
                 <!-- Products /- -->
+                <nav class="ow-pagination">
+                    <ul class="pagination">
+                        <% if (pageIndex > 0) { %>
+                        <li><a href="/project?pageIndex=0">首页</a></li>
+                        <% } %>
+                        <% if(pageIndex === 0) { %>
+                        <li class="disabled"><a href="javascript:;">上一页</a></li>
+                        <% } else { %>
+                        <li>
+                            <a href="/project?pageIndex=<%= pageIndex - 1 %>">上一页</a>
+                        </li>
+                        <% } %>
+                        <% for(var i = 0; i < totalPage; i++) { %>
+                        <% if (i === pageIndex) { %>
+                        <li class="active"><a href="/project?pageIndex=<%= i %>"><%= i + 1 %></a></li>
+                        <% } else { %>
+                        <li><a href="/project?pageIndex=<%= i %>"><%= i + 1 %></a></li>
+                        <% } %>
+                        <% } %>
+                        <% if (pageIndex === totalPage - 1) { %>
+                        <li class="disabled"><a href="javascript:;">下一页</a></li>
+                        <% } else { %>
+                        <li><a href="/project?pageIndex=<%= pageIndex + 1 %>">下一页</a></li>
+                        <% } %>
+                    </ul>
+                </nav>
             </div>
         </div><!-- Container /- -->
     </div><!-- Product Section /- -->

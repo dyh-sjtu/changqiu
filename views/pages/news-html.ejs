@@ -22,27 +22,46 @@
                 <% news && news.length > 0 && news.forEach(function (newsItem, index) { %>
                 <div class="type-post news-wrapper">
                     <div class="entry-cover mt-30 tc">
-                        <a title="新闻<%= index+1 %>" href="/news/<%= newsItem._id %>" class="tc">
+                        <a title="新闻<%= index+1 %>" href="/newsDetail?newsId=<%= newsItem._id %>" class="tc">
                             <img alt="新闻<%= index+1 %>" src="<%= newsItem.src %>" />
                         </a>
                     </div>
-                    <h3 class="entry-title tc"><a title="<%= newsItem.title %>" href="<%= newsItem.src %>"><%= newsItem.title %></a></h3>
+                    <h3 class="entry-title tc"><a title="<%= newsItem.title %>" href="/newsDetail?newsId=<%= newsItem._id %>"><%= newsItem.title %></a></h3>
                     <div class="w100 tc">
                         <div class="post-date" style="padding-right: 0"><a style="text-decoration: none" href="javascript:;" title="日期"><i class="icon icon-Agenda mr-10"></i><%= moment(newsItem.time).format("YYYY-MM-DD") %></a></div>
                     </div>
-                    <div class="entry-content tc mb-30">
+                    <div class="entry-content">
                         <div class="suojin news-text-over-line mb-20"><%- newsItem.content %></div>
-                        <a href="/news/<%= newsItem._id %>" title="查看详情" class="read-more">查看详情</a>
+                    </div>
+                    <div class="entry-content tc mb-25">
+                        <a href="/newsDetail?newsId=<%= newsItem._id %>" title="查看详情" class="read-more">查看详情</a>
                     </div>
                 </div>
                 <% }) %>
-                <nav class="ow-pagination text-center">
+                <nav class="ow-pagination">
                     <ul class="pagination">
-                        <li><a href="#">上一页</a></li>
-                        <li><a href="#">1</a></li>
-                        <li><a href="#">2</a></li>
-                        <li><a href="#">3</a></li>
-                        <li><a href="#">下一页</a></li>
+                        <% if (pageIndex > 0) { %>
+                        <li><a href="/news?pageIndex=0">首页</a></li>
+                        <% } %>
+                        <% if(pageIndex === 0) { %>
+                        <li class="disabled"><a href="javascript:;">上一页</a></li>
+                        <% } else { %>
+                        <li>
+                            <a href="/news?pageIndex=<%= pageIndex - 1 %>">上一页</a>
+                        </li>
+                        <% } %>
+                        <% for(var i = 0; i < totalPage; i++) { %>
+                        <% if (i === pageIndex) { %>
+                        <li class="active"><a href="/news?pageIndex=<%= i %>"><%= i + 1 %></a></li>
+                        <% } else { %>
+                        <li><a href="/news?pageIndex=<%= i %>"><%= i + 1 %></a></li>
+                        <% } %>
+                        <% } %>
+                        <% if (pageIndex === totalPage - 1) { %>
+                        <li class="disabled"><a href="javascript:;">下一页</a></li>
+                        <% } else { %>
+                        <li><a href="/news?pageIndex=<%= pageIndex + 1 %>">下一页</a></li>
+                        <% } %>
                     </ul>
                 </nav>
             </div>

@@ -30,13 +30,17 @@
                         </a>
                     </div>
                 </div>
-                <div class="entry-content tc mb-30">
+                <div class="entry-content mb-30">
                     <div class="suojin mb-20" style="word-wrap: break-word"><%- newsItem.content %></div>
                 </div>
-                <nav class="ow-pagination text-center">
+                <nav class="ow-pagination tc">
                     <ul class="pagination">
-                        <li><a href="#">上一篇</a></li>
-                        <li><a href="#">下一篇</a></li>
+                        <% if(ifPreExist) { %>
+                        <li><a href="/newsDetail/?newsId=<%= newsItem._id %>&status=pre">上一篇</a></li>
+                        <% } %>
+                        <% if(ifNextExist) { %>
+                        <li><a href="/newsDetail/?newsId=<%= newsItem._id %>&status=next">下一篇</a></li>
+                        <% } %>
                     </ul>
                 </nav>
             </div>

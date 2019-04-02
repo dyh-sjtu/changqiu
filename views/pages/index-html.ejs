@@ -82,14 +82,14 @@
                 <h3>关于我们</h3>
                 <img src="https://changqiu.oss-cn-zhangjiakou.aliyuncs.com/img/seprator.png" alt="seprator"/>
             </div><!-- Section Header /- -->
-            <div class="col-md-7 col-sm-12 col-xs-12">
+            <div class="col-md-7 col-sm-8 col-xs-8">
                 <div class="form-box">
                     <div class="we-are-img">
                         <img src="<%= company.imgUrl %>" alt="上海畅球"/>
                     </div>
                 </div>
             </div>
-            <div class="col-md-5 col-sm-12 col-xs-12">
+            <div class="col-md-5 col-sm-4 col-xs-4">
                 <div class="why-choose-box">
                     <h3 class="we-are-box"><i class="icon icon-Flag"></i>关于畅球</h3>
                     <p class="text-over-line">
@@ -171,14 +171,14 @@
                     <% if (news && news.length > 0) { %>
                     <div class="type-post news-wrapper">
                         <div class="entry-cover">
-                            <a title="<%= news[0].title %>" href="/news/<%= news[0]._id %>">
+                            <a title="<%= news[0].title %>" href="/newsDetail?newsId=<%= news[0]._id %>">
                                 <img alt="<%= news[0].title %>" src="<%= news[0].src %>"/>
                             </a>
                         </div>
                         <h3 class="entry-title text-over">
-                            <a title="<%= news[0].title %>" href="/news/<%= news[0]._id %>"><%= news[0].title %></a>
+                            <a title="<%= news[0].title %>" href="/newsDetail?newsId=<%= news[0]._id %>"><%= news[0].title %></a>
                         </h3>
-                        <div class="entry-meta">
+                        <div class="entry-meta" style=" margin-bottom: 0">
                             <div class="post-date">
                                 <a href="javascript:;" title="日期">
                                     <i class="icon icon-Time">
@@ -187,11 +187,11 @@
                                 </a>
                             </div>
                         </div>
-                        <div class="entry-content">
-                            <div class="text-over-line mb-20">
-                                <%- news[0].content %>
-                            </div>
-                            <a href="/news/<%= news[0]._id %>" title="查看详情">查看详情</a>
+                        <div class="text-over-line mb-20">
+                            <%- news[0].content %>
+                        </div>
+                        <div class="entry-content mb-10">
+                            <a href="/newsDetail?newsId=<%= news[0]._id %>" title="查看详情">查看详情</a>
                         </div>
                     </div>
                     <% } %>
@@ -200,12 +200,12 @@
                     <% news && news.length > 0 && news.forEach(function (item, index) { %>
                     <div class="type-post news-wrapper">
                         <div class="entry-cover" style="width: 180px">
-                            <a title="新闻<%= index+1 %>" href="/news/<%= item._id %>">
+                            <a title="新闻<%= index+1 %>" href="/newsDetail?newsId=<%= item._id %>">
                                 <img alt="新闻<%= index+1 %>" src="<%= item.src %>"/>
                             </a>
                         </div>
                         <h3 class="entry-title text-over">
-                            <a title="<%= item.title %>" href="/news/<%= item._id %>"><%= item.title %></a>
+                            <a title="<%= item.title %>" href="/newsDetail?newsId=<%= item._id %>"><%= item.title %></a>
                         </h3>
                         <div class="entry-meta">
                             <div class="post-date">
@@ -216,11 +216,11 @@
                                 </a>
                             </div>
                         </div>
-                        <div class="entry-content">
-                            <div class="news-text-over-line mb-15">
-                                <%- item.content %>
-                            </div>
-                            <a href="/news/<%= item._id %>" title="continue reading">查看详情</a>
+                        <div class="news-text-over-line mb-20">
+                            <%- item.content %>
+                        </div>
+                        <div class="entry-content mb-10">
+                            <a href="/newsDetail?newsId=<%= item._id %>" title="查看详情">查看详情</a>
                         </div>
                     </div>
                     <% }) %>
