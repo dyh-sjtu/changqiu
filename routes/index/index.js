@@ -257,8 +257,7 @@ router.get('/newsDetail', upload.saveViewData, (req, res) => {
 		(err) {
 		console.log('err', err)
 	}
-})
-;
+});
 
 
 router.get('/service', upload.saveViewData, (req, res) => {
